@@ -1,8 +1,12 @@
 package com.baizhi.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.baizhi.dao.UserDao;
 import com.baizhi.entity.MonthAndCount;
+import com.google.gson.JsonObject;
+import io.goeasy.GoEasy;
+import io.goeasy.publish.PublishListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,10 +59,55 @@ public class fxController {
         }
 
 
+
+
         map.put("nv",womana);
+        String s = JSONObject.toJSONString(map);
+
+
+        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io","BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+        goEasy.publish("fx",s);
+
+
+
 
         return map;
 
+    }
+
+    @RequestMapping("kuang")
+    public void bb(){
+        Map<String,Object> map = new HashMap<>();
+
+        for(int j = 0;j<9999;j++) {
+
+            System.out.println(j);
+            //Thread.sleep(1000);
+
+            int[] mana = new int[12];
+
+
+            for (int i = 0; i < mana.length; i++) {
+                mana[i] = (int) (Math.random() * 10);
+
+            }
+
+            map.put("nan", mana);
+
+            int[] womana = new int[12];
+
+            for (int i = 0; i < womana.length; i++) {
+                womana[i] = (int) (Math.random() * 10);
+
+            }
+
+
+            map.put("nv", womana);
+            String s = com.alibaba.fastjson.JSONObject.toJSONString(map);
+            GoEasy goEasy = new GoEasy("https://rest-hangzhou.goeasy.io", "BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+            goEasy.publish("fx", s);
+
+        }
     }
 
 

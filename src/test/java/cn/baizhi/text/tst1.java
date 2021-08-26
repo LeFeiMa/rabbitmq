@@ -9,6 +9,9 @@ import com.baizhi.entity.*;
 
 import com.baizhi.yxApplication;
 
+import io.goeasy.GoEasy;
+import io.goeasy.publish.GoEasyError;
+import io.goeasy.publish.PublishListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest(classes = yxApplication.class)
@@ -118,6 +120,48 @@ public class tst1 {
 
     @Test
     public void vb(){
+        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io","BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+        goEasy.publish("fx", "Hello GoEasy",new PublishListener(){
+        });
+
+    } @Test
+    public void cv() throws InterruptedException {
+        Map<String,Object> map = new HashMap<>();
+
+        for(int j = 0;j<9999;j++) {
+
+            System.out.println(j);
+            //Thread.sleep(1000);
+
+            int[] mana = new int[12];
+
+
+            for (int i = 0; i < mana.length; i++) {
+                mana[i] = (int) (Math.random() * 10);
+
+            }
+
+            map.put("nan", mana);
+
+            int[] womana = new int[12];
+
+            for (int i = 0; i < womana.length; i++) {
+                womana[i] = (int) (Math.random() * 10);
+
+            }
+
+
+            map.put("nv", womana);
+            String s = com.alibaba.fastjson.JSONObject.toJSONString(map);
+            GoEasy goEasy = new GoEasy("https://rest-hangzhou.goeasy.io", "BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+            goEasy.publish("fx", s);
+
+        }
+
+
+
+
+
 
     }
 
