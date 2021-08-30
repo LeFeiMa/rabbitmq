@@ -8,7 +8,7 @@ public interface AdminService {
     //登录  通过名字查询是否有这个人
     Admin querybyName(String username);
     //管理员用户修改密码
-    void updata(Admin admin);
+    void updata(Admin admin)                                        ;
     //添加管理员
     void add(Admin admin);
 

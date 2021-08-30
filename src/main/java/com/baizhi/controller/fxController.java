@@ -65,7 +65,7 @@ public class fxController {
         String s = JSONObject.toJSONString(map);
 
 
-        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io","BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io","BC-f7c9479c0d1d418f9e809ffa78c25da0");
         goEasy.publish("fx",s);
 
 
@@ -79,7 +79,7 @@ public class fxController {
     public void bb(){
         Map<String,Object> map = new HashMap<>();
 
-        for(int j = 0;j<9999;j++) {
+        for(int j = 0;j<50;j++) {
 
             System.out.println(j);
             //Thread.sleep(1000);
@@ -104,7 +104,7 @@ public class fxController {
 
             map.put("nv", womana);
             String s = com.alibaba.fastjson.JSONObject.toJSONString(map);
-            GoEasy goEasy = new GoEasy("https://rest-hangzhou.goeasy.io", "BC-619f41322e0b416f82ecb4a9ecc6d0c4");
+            GoEasy goEasy = new GoEasy("https://rest-hangzhou.goeasy.io", "BC-f7c9479c0d1d418f9e809ffa78c25da0");
             goEasy.publish("fx", s);
 
         }
